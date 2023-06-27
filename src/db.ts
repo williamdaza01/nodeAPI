@@ -1,4 +1,7 @@
 import { ConnectOptions } from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 interface MongoDBConfig {
   url: string;
@@ -6,10 +9,9 @@ interface MongoDBConfig {
 }
 
 const mongodbConfig: MongoDBConfig = {
-  url:
-    'mongodb://drenvio:moM5f3AodwLE5d0A@ac-aemgtkt-shard-00-00.unqyghm.mongodb.net:27017,ac-aemgtkt-shard-00-01.unqyghm.mongodb.net:27017,ac-aemgtkt-shard-00-02.unqyghm.mongodb.net:27017/?replicaSet=atlas-y8oxsk-shard-0&ssl=true&authSource=admin',
+  url: process.env.MONGODB_URL || '',
   options: {
-    dbName: 'challenge',
+    dbName: process.env.MONGODB_DBNAME,
   },
 };
 

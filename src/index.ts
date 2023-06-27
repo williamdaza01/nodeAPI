@@ -3,9 +3,12 @@ import cors from 'cors';
 import { connectToDatabase } from './app';
 import { getProductsInStock } from './controller/ProductController';
 import { getPriceForClient } from './controller/PriceController';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
@@ -19,3 +22,5 @@ app.get('/price/:user_id/:nombre_producto', getPriceForClient);
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
+export default app;
